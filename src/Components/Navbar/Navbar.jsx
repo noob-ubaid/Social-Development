@@ -1,13 +1,15 @@
-import React from "react";
+import React, { use } from "react";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
 import { motion } from "motion/react";
 import { delay } from "motion";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { button } from "motion/react-client";
 
 const Navbar = () => {
-  const word = "SocialMates";
+  const word = "SocialMates"
   const letters = word.split("");
-  console.log(letters);
+  const {user , logOut} = use(AuthContext)
   const links = (
     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
       <NavLink to="/" className={`text-lg font-medium`}>
@@ -73,9 +75,11 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end mr-2 md:mr-0">
-        <Link to='/login' className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5">
+        {
+          user ? <button onClick={() => logOut()} className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5">Logout</button> : <Link to='/login' className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5">
           Login
         </Link>
+        }
       </div>
     </div>
   );

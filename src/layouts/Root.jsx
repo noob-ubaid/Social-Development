@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { use } from 'react';
 import Navbar from '../Components/Navbar/Navbar';
 import { Outlet } from 'react-router';
+import { AuthContext } from '../contexts/AuthProvider';
+import { div } from 'motion/react-client';
 
 const Root = () => {
+    const {loading}= use(AuthContext)
+    if(loading){
+        return <div className='flex items-center justify-center h-screen w-full'><p className='text-3xl font-semibold'>Loading...</p></div>
+    }
     return (
         <div className='max-w-[1600px] mx-auto font-roboto'>
             <Navbar/>

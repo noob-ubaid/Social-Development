@@ -1,7 +1,39 @@
-import React from "react";
-import { Link } from "react-router";
-
+import React, { use } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { toast } from "react-toastify";
 const Login = () => {
+  const { login, google } = use(AuthContext);
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    login(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        toast.success("Successfully logged in");
+        navigate("/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
+  const handleGoogle = () => {
+    google()
+      .then((result) => {
+        const user = result.user;
+        navigate("/");
+        toast.success("Successfully logged in");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+       
+      });
+  };
   return (
     <div className="max-w-[1600px] mx-auto">
       <div className="flex items-center justify-center mt-20">
@@ -9,7 +41,7 @@ const Login = () => {
           <h2 className="text-2xl font-semibold mt-4 mb-2 border-b border-b-[#0F0F0F26] pb-4 text-center">
             Login Your Account
           </h2>
-          <form >
+          <form onSubmit={handleSubmit}>
             <label className="label text-[14px] font-medium mb-1">Email</label>
             <input
               type="email"
@@ -45,10 +77,7 @@ const Login = () => {
               <div className="border-b w-[45%] border-b-[#0F0F0F26]"></div>
             </div>
             <div>
-              <button
-                
-                className="btn bg-white w-full mt-2 text-black border-[#e5e5e5]"
-              >
+              <button onClick={handleGoogle} className="btn bg-white w-full mt-2 text-black border-[#e5e5e5]">
                 <svg
                   aria-label="Google logo"
                   width="16"

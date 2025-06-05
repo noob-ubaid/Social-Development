@@ -1,15 +1,51 @@
-import React from 'react';
-import { Link } from 'react-router';
+import React, { use } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../../contexts/AuthProvider";
+import { toast } from "react-toastify";
 
 const Register = () => {
-    return (
-        <div className="max-w-[1600px] mx-auto">
+  const { register , google} = use(AuthContext);
+  const navigate = useNavigate()
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photo = form.photo.value;
+    const password = form.password.value;
+    register(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        toast.success("Successfully logged in");
+        navigate('/')
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
+  };
+ const handleGoogle = () => {
+    google()
+      .then((result) => {
+        const user = result.user;
+        navigate('/')
+        toast.success("Successfully logged in");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+       
+      });
+  };
+  return (
+    <div className=" mt-20">
       <div className="flex items-center justify-center ">
         <div className="card-body max-w-md border dark:bg-white border-[#0F0F0F26] rounded-md">
           <h2 className="text-2xl font-semibold mt-4 mb-2 border-b border-b-[#0F0F0F26] pb-4 text-center">
             Register Your Account
           </h2>
-          <form className="">
+          <form onSubmit={handleSubmit} className="">
             {/* Name  */}
             <label className="label text-[14px] font-medium mb-1">Name</label>
             <input
@@ -45,14 +81,12 @@ const Register = () => {
             <div className="relative">
               <input
                 pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,}$"
-                type='password'
+                type="password"
                 name="password"
                 className="input w-full"
                 placeholder="Password"
               />
-              <button  type="button" className="cursor-pointer">
-               
-              </button>
+              <button type="button" className="cursor-pointer"></button>
             </div>
             <button type="submit" className="btn btn-neutral w-full mt-4">
               Register
@@ -69,7 +103,7 @@ const Register = () => {
               <div className="border-b w-[45%] border-b-[#0F0F0F26]"></div>
             </div>
             <div>
-              <button  className="btn bg-white w-full mt-2 text-black border-[#e5e5e5]">
+              <button onClick={handleGoogle} className="btn bg-white w-full mt-2 text-black border-[#e5e5e5]">
                 <svg
                   aria-label="Google logo"
                   width="16"
@@ -99,13 +133,12 @@ const Register = () => {
                 </svg>
                 Login with Google
               </button>
-              
             </div>
           </form>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;
