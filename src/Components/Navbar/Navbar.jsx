@@ -1,7 +1,7 @@
 import React, { use, useRef, useState } from "react";
 import { FaHandshakeAngle } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { delay } from "motion";
 import { AuthContext } from "../../contexts/AuthProvider";
 import Button from "@mui/material/Button";
@@ -56,7 +56,7 @@ const Navbar = () => {
             animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.14 }}
           >
-            <FaHandshakeAngle className="text-main text-2xl md:text-3xl"  />
+            <FaHandshakeAngle className="text-main text-2xl md:text-3xl" />
           </motion.p>
           <h1>
             {letters.map((letter, index) => (
@@ -93,51 +93,64 @@ const Navbar = () => {
             </Button>
           </Tooltip>
         )}
-        {open && (
-          <div className="absolute top-14 right-0 mt-2 w-56 bg-white border rounded shadow-lg z-50 p-4 dark:bg-gray-800">
-            <p className="mb-2 text-sm font-semibold text-gray-800 dark:text-white">
-              Events
-            </p>
-          <button onClick={() => setOpen(false)} className="text-white absolute top-3 right-3"><MdCancel size={25}/></button>
-            <ul className="space-y-2">
-              <li>
-                <NavLink
-                  to="/create"
-                  className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
-                >
-                  Create Event
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/manage"
-                  className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
-                >
-                  Manage Events
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/joined"
-                  className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
-                >
-                  Joined Events
-                </NavLink>
-              </li>
-            </ul>
-          </div>
-        )}
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ filter: "blur(6px)", opacity: 0, y: 20 }}
+              animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              transition={{ duration: 0.35, delay: 0.1 }}
+              className="absolute top-14 right-0 mt-2 w-56 bg-white border rounded shadow-lg z-50 p-4 dark:bg-gray-800"
+            >
+              <p className="mb-2 text-sm font-semibold text-gray-800 dark:text-white">
+                Events
+              </p>
+              <button
+                onClick={() => setOpen(false)}
+                className="text-white absolute top-3 right-3"
+              >
+                <MdCancel size={25} />
+              </button>
+              <ul className="space-y-2">
+                <li>
+                  <NavLink
+                    to="/create"
+                    className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
+                  >
+                    Create Event
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/manage"
+                    className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
+                  >
+                    Manage Events
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/joined"
+                    className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
+                  >
+                    Joined Events
+                  </NavLink>
+                </li>
+              </ul>
+            </motion.div>
+          )}
+        </AnimatePresence>
         {user ? (
           <button
             onClick={() => logOut()}
-            className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5"
+            className="btn bg-main text-white px-6 py-4 rounded md:px-8 md:py-5"
           >
             Logout
           </button>
         ) : (
           <Link
             to="/login"
-            className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5"
+            className="btn bg-main text-white px-6 py-4 rounded md:px-8 md:py-5"
           >
             Login
           </Link>

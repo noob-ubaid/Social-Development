@@ -10,7 +10,7 @@ const Root = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen w-full">
-        <p className="text-3xl font-semibold">Loading...</p>
+        <span className="loading loading-spinner loading-xl"></span>
       </div>
     );
   }
