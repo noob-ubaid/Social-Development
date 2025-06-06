@@ -1,11 +1,12 @@
 import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { toast } from "react-toastify";
 
 const Register = () => {
-  const { register , google} = use(AuthContext);
-  const navigate = useNavigate()
+  const { register, google, setUser, updateUser } = use(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation()
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -14,28 +15,31 @@ const Register = () => {
     const photo = form.photo.value;
     const password = form.password.value;
     register(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        toast.success("Successfully logged in");
-        navigate('/')
+      .then((result) => {
+        const user = result.user;
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            toast.success("Successfully logged in");
+            setUser({ ...user, displayName: name, photoURL: photo });
+            navigate(`${location.state ? location.state : "/"}`);
+          })
+          .then((error) => {
+            setUser(user);
+            toast(error);
+          });
       })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // ..
-      });
+      .then(() => {});
   };
- const handleGoogle = () => {
+  const handleGoogle = () => {
     google()
       .then((result) => {
         const user = result.user;
-        navigate('/')
+        navigate(`${location.state ? location.state : "/"}`);
         toast.success("Successfully logged in");
       })
       .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-       
       });
   };
   return (
@@ -103,7 +107,10 @@ const Register = () => {
               <div className="border-b w-[45%] border-b-[#0F0F0F26]"></div>
             </div>
             <div>
-              <button onClick={handleGoogle} className="btn bg-white w-full mt-2 text-black border-[#e5e5e5]">
+              <button
+                onClick={handleGoogle}
+                className="btn bg-white w-full mt-2 text-black border-[#e5e5e5]"
+              >
                 <svg
                   aria-label="Google logo"
                   width="16"

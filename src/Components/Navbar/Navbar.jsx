@@ -4,7 +4,7 @@ import { Link, NavLink } from "react-router";
 import { motion } from "motion/react";
 import { delay } from "motion";
 import { AuthContext } from "../../contexts/AuthProvider";
-import { button } from "motion/react-client";
+
 
 const Navbar = () => {
   const word = "SocialMates"
@@ -74,13 +74,15 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end mr-2 md:mr-0">
+      <motion.div initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
+            animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.1 }} className="navbar-end mr-2 md:mr-0">
         {
           user ? <button onClick={() => logOut()} className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5">Logout</button> : <Link to='/login' className="btn bg-main text-white px-6 py-3 rounded md:px-8 md:py-5">
           Login
         </Link>
         }
-      </div>
+      </motion.div>
     </div>
   );
 };
