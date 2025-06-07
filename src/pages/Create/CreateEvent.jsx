@@ -3,32 +3,46 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "react-toastify";
 
 const CreateEvent = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [eventType,setEventType] = useState()
-  const [description,setDescription] = useState()
-  const handleDescription = e => {
-    setDescription(e.target.value)
-  }
-  const handleEventType = e => {
-    setEventType(e.target.value)
-  }
-  const handleSubmit = e => {
-    e.preventDefault()
-    const form = e.target
-    const name = form.name.value
-    const image = form.image.value
-    const location = form.location.value
-    const date = startDate.toDateString()
-    
+  const [eventType, setEventType] = useState();
+  const [description, setDescription] = useState();
+  const handleDescription = (e) => {
+    setDescription(e.target.value);
+  };
+  const handleEventType = (e) => {
+    setEventType(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const image = form.image.value;
+    const location = form.location.value;
+    const date = startDate.toDateString();
+
     const data = {
-        name,
-        image,
-        location,description,date,
-    }
-    
-  }
+      name,
+      image,
+      location,
+      description,
+      eventType,
+      date,
+    };
+    fetch("http://localhost:3000/events", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        toast.success("Successfully added your event");
+      });
+  };
   return (
     <div className="my-6 md:my-10">
       <h2 className="text-2xl text-center md:text-3xl font-semibold">
@@ -55,8 +69,8 @@ const CreateEvent = () => {
 
           <div className="flex items-center md:gap-8 gap-4 dark:bg-gray-700 dark:text-white flex-col md:flex-row w-full">
             <select
-            onChange={handleEventType}
-            value={eventType}
+              onChange={handleEventType}
+              value={eventType}
               required
               className=" px-6 py-3 rounded w-full dark:bg-gray-700 dark:text-white bg-gray-200 outline-none"
             >

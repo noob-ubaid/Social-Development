@@ -9,7 +9,7 @@ const Banner = () => {
           initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
           animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.14 }}
-          className="text-3xl md:text-4xl text-center md:text-left lg:text-5xl font-semibold"
+          className="text-3xl md:text-4xl text-center md:text-left md:font-bold lg:text-[45px] font-semibold"
         >
           The Social Impact Hub -{" "}
           <span
