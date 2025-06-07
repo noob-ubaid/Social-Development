@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Typewriter } from "react-simple-typewriter";
 const Banner = () => {
   return (
-    <div className="flex items-center gap-8 mt-6 md:mt-14 md:gap-20 justify-between flex-col-reverse md:flex-row">
+    <div className="flex items-center gap-8 mt-6 md:mt-14 md:gap-16 justify-between flex-col-reverse md:flex-row">
       <div>
         <motion.h2
           initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
@@ -48,7 +48,7 @@ const Banner = () => {
           initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
           animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.14 }}
-          className="rounded-md"
+          className="rounded-md w-full md:w-[700px]"
           src="https://media.istockphoto.com/id/1022255954/photo/people-planting-tree-in-park.jpg?s=612x612&w=0&k=20&c=g_lC-Irk0zpLf7Mi3SyPQIKqfSk4UpDACCIXrNeNE5A="
           alt=""
         />
