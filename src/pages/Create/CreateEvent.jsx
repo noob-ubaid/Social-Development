@@ -31,14 +31,8 @@ const CreateEvent = () => {
       eventType,
       date,
     };
-    fetch("http://localhost:3000/events", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.json())
+    axios.post(`${import.meta.env.VITE_api_url}/events`, data)
+    .then((res) => res.data)
       .then((data) => {
         toast.success("Successfully added your event");
       });

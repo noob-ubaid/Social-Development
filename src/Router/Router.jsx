@@ -8,6 +8,7 @@ import PrivateRoute from "../contexts/PrivateRoute";
 import CreateEvent from "../pages/Create/CreateEvent";
 import ManageEvents from "../pages/Manage/ManageEvents";
 import JoinedEvents from "../pages/Joined/JoinedEvents";
+import Details from "../pages/Details/Details";
 
 export const router = createBrowserRouter([
   {
@@ -20,7 +21,13 @@ export const router = createBrowserRouter([
       },
       {
         path : '/upcomingevents',
-        Component : UpcomingEvents
+        Component : UpcomingEvents,
+        loader : ()=> fetch(`${import.meta.env.VITE_api_url}/events`)
+      },
+      {
+        path : '/details/:id',
+        element : <PrivateRoute><Details></Details></PrivateRoute>,
+        loader : ({params}) => fetch(`${import.meta.env.VITE_api_url}/events/${params.id}`)
       },
       {
         path : '/create',
