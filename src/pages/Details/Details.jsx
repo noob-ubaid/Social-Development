@@ -15,17 +15,17 @@ const Details = () => {
           />
         </div>
         <div className=" w-full md:w-[60%]">
-          <h3 className=" text-xl  font-semibold">Name : {data.name}</h3>
-          <p className="text-[#0F0F0F99]  font-medium mt-2">
+          <h3 className=" text-2xl dark:text-white font-semibold">Name : {data.name}</h3>
+          <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
             Location : {data.location}
           </p>
-          <p className="text-[#0F0F0F99]  font-medium mt-2">
+          <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
             Date : {data.date}
           </p>
-          <p className="text-[#0F0F0F99]  font-medium mt-2">
+          <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
             Event Type : {data.eventType}
           </p>
-          <p className="text-[#0F0F0F99]  font-medium mt-2">
+          <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
             Description : {data.description}
           </p>
 

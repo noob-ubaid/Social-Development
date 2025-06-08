@@ -15,7 +15,7 @@ const Root = () => {
     );
   }
   return (
-    <>
+    <div className="bg-white dark:bg-gray-900">
       <div className="max-w-[1600px] mx-auto font-roboto">
         <Navbar />
         <div className="px-4 md:px-0">
@@ -23,7 +23,7 @@ const Root = () => {
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

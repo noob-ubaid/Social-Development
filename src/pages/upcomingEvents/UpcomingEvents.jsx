@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { useLoaderData } from "react-router";
+import React, { useEffect, useState } from "react";
 import Event from "../event/Event";
+import { useLoaderData } from "react-router";
 
 const UpcomingEvents = () => {
-  const data = useLoaderData();
+  const data = useLoaderData()
   const [eventType, setEventType] = useState("All");
   const handleEventType = (e) => {
     setEventType(e.target.value);
@@ -19,6 +19,11 @@ const UpcomingEvents = () => {
     eventType === "All"
       ? upcomingEvents
       : upcomingEvents.filter((event) => event.eventType === eventType);
+  //      useEffect(() => {
+  //   fetch(`http://localhost:3000/events?searchParams=${search}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setData(data));
+  // }, [search]);
   return (
     <div>
       <div className="flex items-center my-6 md:my-8 md:gap-8 gap-4 dark:bg-gray-700 dark:text-white flex-col md:flex-row w-full">
@@ -33,6 +38,16 @@ const UpcomingEvents = () => {
           <option value="Donation">Donation</option>
           <option value="Clean Up">Clean Up</option>
         </select>
+      </div>
+      <div>
+        <input
+          className=" px-6 w-full mb-8 py-3 rounded dark:bg-gray-700 dark:text-white bg-gray-200 outline-none"
+          type="text"
+          name="search"
+          placeholder="Search"
+          onChange={(e) => setSearch(e.target.value)}
+          required
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10">
         {filteredEvents.map((event) => (

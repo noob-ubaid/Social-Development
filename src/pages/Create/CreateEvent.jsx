@@ -1,11 +1,13 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const CreateEvent = () => {
+  const { user } = use(AuthContext);
   const [startDate, setStartDate] = useState(new Date());
   const [eventType, setEventType] = useState();
   const [description, setDescription] = useState();
@@ -29,10 +31,12 @@ const CreateEvent = () => {
       location,
       description,
       eventType,
+      email: user,
       date,
     };
-    axios.post(`${import.meta.env.VITE_api_url}/events`, data)
-    .then((res) => res.data)
+    axios
+      .post(`${import.meta.env.VITE_api_url}/events`, data)
+      .then((res) => res.data)
       .then((data) => {
         toast.success("Successfully added your event");
       });

@@ -18,15 +18,15 @@ const Event = (event) => {
         Title : {event.event.name}
       </p>
       <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-       <i class="fa-solid fa-calendar-days mr-2"></i> Date : {event.event.date}
+       <i class="fa-solid fa-calendar-days text-main mr-2"></i> Date : {event.event.date}
       </p>
       <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-       <i class="fa-solid fa-location-dot mr-2"></i> Location : {event.event.location}
+       <i class="fa-solid fa-location-dot text-main mr-2"></i> Location : {event.event.location}
       </p>
       <div className="mt-4 w-full ">
         <Link
           to={`/details/${event.event._id}`}
-          className="block w-full text-center bg-[#AD49E1] text-white py-4 rounded-full font-semibold hover:bg-[#9b3cd3] transition"
+          className="block w-full text-center bg-[#AD49E1] text-white py-3 rounded-full font-semibold hover:bg-[#9b3cd3] transition"
         >
           See Details
         </Link>

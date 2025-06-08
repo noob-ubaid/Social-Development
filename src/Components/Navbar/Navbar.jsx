@@ -21,10 +21,10 @@ const Navbar = () => {
 
   const links = (
     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-      <NavLink to="/" className="text-lg font-medium">
+      <NavLink to="/" className="text-lg dark:text-white font-medium">
         Home
       </NavLink>
-      <NavLink to="/upcomingevents" className="text-lg font-medium">
+      <NavLink to="/upcomingevents" className="text-lg dark:text-white font-medium">
         Upcoming Events
       </NavLink>
     </div>
@@ -67,8 +67,8 @@ const Navbar = () => {
               <motion.span
                 initial={{ filter: "blur(6px)", opacity: 0, y: 12 }}
                 animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: 0.1 * index }}
-                className="text-lg font-semibold text-nowrap md:text-2xl"
+                transition={{ duration: 0.25, delay: 0.2 * index }}
+                className="text-lg dark:text-white font-semibold text-nowrap md:text-2xl"
                 key={index}
               >
                 {letter}
@@ -112,14 +112,14 @@ const Navbar = () => {
               animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
               transition={{ duration: 0.35, delay: 0.1 }}
-              className="absolute top-14 right-0 mt-2 w-56 bg-white border z-50 rounded shadow-lg p-4 dark:bg-gray-800"
+              className="absolute top-14 right-0 mt-2 w-56 bg-white  z-50 rounded shadow-lg p-4 dark:bg-gray-800"
             >
               <p className="mb-2 text-sm font-semibold text-gray-800 dark:text-white">
                 Events
               </p>
               <button
                 onClick={() => setOpen(false)}
-                className="text-white absolute top-3 right-3"
+                className="text-black absolute dark:text-white top-3 right-3"
               >
                 <MdCancel size={25} />
               </button>
@@ -170,7 +170,7 @@ const Navbar = () => {
           </Link>
         )}
         <button onClick={handleTheme}>
-          {darkMode ? <CiLight className="text-2xl md:text-4xl"/> :  <MdDarkMode className="text-2xl md:text-4xl"/> }
+          {darkMode ? <CiLight className="text-2xl text-white md:text-4xl"/> :  <MdDarkMode className="text-2xl text-black md:text-4xl"/> }
         </button>
       </motion.div>
     </div>
