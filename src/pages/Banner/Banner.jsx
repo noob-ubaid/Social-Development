@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { Typewriter } from "react-simple-typewriter";
 const Banner = () => {
   return (
-    <div className="flex items-center gap-8 mt-6 md:mt-14 md:gap-16 justify-between flex-col-reverse md:flex-row">
+    <div className="flex items-center mt-6 gap-8 mb-6 md:mt-8 md:gap-16 justify-between flex-col-reverse md:flex-row">
       <div>
         <motion.h2
           initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
