@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router";
 
 const Event = (event) => {
@@ -15,13 +14,15 @@ const Event = (event) => {
         {event.event.name}
       </h3>
       <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-        Title : {event.event.name}
+        Event Type : {event.event.eventType}
       </p>
       <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-       <i class="fa-solid fa-calendar-days text-main mr-2"></i> Date : {event.event.date}
+        <i class="fa-solid fa-calendar-days text-main mr-2"></i> Date :{" "}
+        {event.event.date}
       </p>
       <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-       <i class="fa-solid fa-location-dot text-main mr-2"></i> Location : {event.event.location}
+        <i class="fa-solid fa-location-dot text-main mr-2"></i> Location :{" "}
+        {event.event.location}
       </p>
       <div className="mt-4 w-full ">
         <Link

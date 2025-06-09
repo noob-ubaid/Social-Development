@@ -9,25 +9,69 @@ import { MdCancel } from "react-icons/md";
 import { useDarkMode } from "../../contexts/ThemeContext";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import { delay, stagger } from "motion";
+import { duration } from "@mui/material/styles";
+const motionAnimation = {
+  hidden: {
+    opacity: 0,
+    y: -12,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      delay: 0.1,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const childAnimation = {
+  hidden: {
+    opacity: 0,
+    y: -10,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
 const Navbar = () => {
   const word = "Jovent";
-    const { darkMode, setDarkMode } = useDarkMode();
-    const handleTheme = () => {
-      setDarkMode(!darkMode)
-    }
+  const { darkMode, setDarkMode } = useDarkMode();
+  const handleTheme = () => {
+    setDarkMode(!darkMode);
+  };
   const [open, setOpen] = useState(false);
   const letters = word.split("");
   const { user, logOut } = use(AuthContext);
 
   const links = (
-    <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
-      <NavLink to="/" className="text-lg dark:text-white font-medium">
-        Home
-      </NavLink>
-      <NavLink to="/upcomingevents" className="text-lg dark:text-white font-medium">
-        Upcoming Events
-      </NavLink>
-    </div>
+    <motion.div
+      initial="hidden"
+      animate="show"
+      variants={motionAnimation}
+      className="flex flex-col md:flex-row items-center gap-6 md:gap-8"
+    >
+      <motion.div variants={childAnimation}>
+        <NavLink to="/" className="text-lg dark:text-white font-medium">
+          Home
+        </NavLink>
+      </motion.div>
+
+      <motion.div variants={childAnimation}>
+        <NavLink
+          to="/upcomingevents"
+          className="text-lg dark:text-white font-medium"
+        >
+          Upcoming Events
+        </NavLink>
+      </motion.div>
+    </motion.div>
   );
 
   return (
@@ -152,7 +196,6 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-        
 
         {user ? (
           <button
@@ -170,7 +213,11 @@ const Navbar = () => {
           </Link>
         )}
         <button onClick={handleTheme}>
-          {darkMode ? <CiLight className="text-2xl text-white md:text-4xl"/> :  <MdDarkMode className="text-2xl text-black md:text-4xl"/> }
+          {darkMode ? (
+            <CiLight className="text-2xl text-white md:text-4xl" />
+          ) : (
+            <MdDarkMode className="text-2xl text-black md:text-4xl" />
+          )}
         </button>
       </motion.div>
     </div>

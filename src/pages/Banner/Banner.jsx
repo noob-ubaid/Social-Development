@@ -1,19 +1,54 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Typewriter } from "react-simple-typewriter";
+const motionAnimation = {
+  hidden: {
+    opacity: 0,
+    y: 12,
+    blur: 4,
+  },
+  show: {
+    opacity: 1,
+    y: 0,
+    blur: 0,
+    transition: {
+      duration: 0.6,
+      delay: 0.1,
+      staggerChildren: 0.3,
+    },
+  },
+};
+
+const childAnimation = {
+  hidden: {
+    opacity: 0,
+    blur: 4,
+    y: 10,
+  },
+  show: {
+    blur: 0,
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
 const Banner = () => {
   return (
     <div className="flex items-center mt-6 gap-8 mb-6 md:mt-8 md:gap-16 justify-between flex-col-reverse md:flex-row">
-      <div>
+      <motion.div initial="hidden" animate="show" variants={motionAnimation}>
         <motion.h2
-          initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
-          animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.14 }}
+          variants={childAnimation}
           className="text-3xl dark:text-white md:text-4xl text-center md:text-left md:font-bold lg:text-[45px] font-semibold"
         >
           The Social Impact Hub -{" "}
           <span
-            style={{ color: "#ad49e1", fontWeight: "bold", fontStyle: "italic" }}
+            style={{
+              color: "#ad49e1",
+              fontWeight: "bold",
+              fontStyle: "italic",
+            }}
           >
             <Typewriter
               words={[
@@ -32,9 +67,7 @@ const Banner = () => {
           </span>
         </motion.h2>
         <motion.p
-          initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
-          animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.14 }}
+          variants={childAnimation}
           className="max-w-[750px] text-gray-400 text-center md:text-left mt-6"
         >
           Create, join, and manage events that matter. From tree plantations to
@@ -42,7 +75,7 @@ const Banner = () => {
           Connect with others, organize meaningful initiatives, and make a
           lasting difference in your community — one event at a time.
         </motion.p>
-      </div>
+      </motion.div>
       <div>
         <motion.img
           initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}

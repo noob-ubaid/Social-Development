@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
           <div>
-            <h3 className="text-3xl font-bold mb-4 text-main">SocialMates</h3>
+            <h3 className="text-3xl font-bold mb-4 text-main">Jobent</h3>
             <p className="text-gray-400 mb-4">
               Connecting volunteers with meaningful opportunities to create
               positive change in communities.
@@ -128,12 +128,12 @@ const Footer = () => {
               <li className="flex items-start">
                 <i className="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
                 <span className="text-gray-400">
-                  123 Community St, Dhaka, Bangladesh
+                  123 jobent St, Dhaka, Bangladesh
                 </span>
               </li>
               <li className="flex items-start">
                 <i className="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">info@communitycare.org</span>
+                <span className="text-gray-400">info@jobent.org</span>
               </li>
               <li className="flex items-start">
                 <i className="fas fa-phone-alt mt-1 mr-3 text-gray-400"></i>
@@ -145,7 +145,7 @@ const Footer = () => {
         <div className="border-t border-gray-800 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2025 CommunityCare. All rights reserved.
+              © 2025 Jobent. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a

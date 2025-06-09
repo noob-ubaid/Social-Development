@@ -31,7 +31,7 @@ const CreateEvent = () => {
       location,
       description,
       eventType,
-      email: user,
+      email: user.email,
       date,
     };
     axios
@@ -97,6 +97,7 @@ const CreateEvent = () => {
             selected={startDate}
             minDate={new Date()}
             dateFormat="dd-MM-yyyy"
+            // dateFormat="YYYY-MM-DD"
             onChange={(date) => setStartDate(date)}
           />
           <button
