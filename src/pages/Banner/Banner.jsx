@@ -1,47 +1,33 @@
 import React from "react";
-import { motion } from "motion/react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import { Typewriter } from "react-simple-typewriter";
-const motionAnimation = {
-  hidden: {
-    opacity: 0,
-    y: 12,
-    blur: 4,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    blur: 0,
-    transition: {
-      duration: 0.6,
-      delay: 0.1,
-      staggerChildren: 0.3,
-    },
-  },
-};
 
-const childAnimation = {
-  hidden: {
-    opacity: 0,
-    blur: 4,
-    y: 10,
-  },
-  show: {
-    blur: 0,
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
 const Banner = () => {
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.from(".title", {
+      y : 20,
+      opacity : 0,
+      duration : 0.4,
+      delay : 0.3,
+      stagger : 0.02
+    });
+    tl.from(".para", {
+      y : 20,
+      opacity : 0,
+      duration : 0.4,
+    });
+    tl.from(".img", {
+      y : 20,
+      opacity : 0,
+      duration : 0.35,
+    });
+  });
   return (
-    <div className="flex items-center mt-6 gap-8 mb-6 md:mt-8 md:gap-16 justify-between flex-col-reverse md:flex-row">
-      <motion.div initial="hidden" animate="show" variants={motionAnimation}>
-        <motion.h2
-          variants={childAnimation}
-          className="text-3xl dark:text-white md:text-4xl text-center md:text-left md:font-bold lg:text-[45px] font-semibold"
-        >
+    <div className="flex items-center mt-80 gap-8 mb-6 md:mt-16 md:gap-16 justify-between flex-col-reverse md:flex-row">
+      <div>
+        <h2 className="text-3xl title dark:text-white md:text-4xl text-center md:text-left md:font-bold lg:text-[45px] font-semibold">
           The Social Impact Hub -{" "}
           <span
             style={{
@@ -65,23 +51,17 @@ const Banner = () => {
               delaySpeed={1000}
             />
           </span>
-        </motion.h2>
-        <motion.p
-          variants={childAnimation}
-          className="max-w-[750px] text-gray-400 text-center md:text-left mt-6"
-        >
+        </h2>
+        <p className="max-w-[750px] para text-gray-400 text-center md:text-left mt-6">
           Create, join, and manage events that matter. From tree plantations to
           community donations — GreenPulse is your gateway to local impact.
           Connect with others, organize meaningful initiatives, and make a
           lasting difference in your community — one event at a time.
-        </motion.p>
-      </motion.div>
+        </p>
+      </div>
       <div>
-        <motion.img
-          initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
-          animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.14 }}
-          className="rounded-md w-full md:w-[700px]"
+        <img
+          className="rounded-md img w-full md:w-[700px]"
           src="https://media.istockphoto.com/id/1022255954/photo/people-planting-tree-in-park.jpg?s=612x612&w=0&k=20&c=g_lC-Irk0zpLf7Mi3SyPQIKqfSk4UpDACCIXrNeNE5A="
           alt=""
         />

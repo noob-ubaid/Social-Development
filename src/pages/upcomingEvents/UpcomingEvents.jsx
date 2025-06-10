@@ -24,7 +24,6 @@ const UpcomingEvents = () => {
     eventType === "All"
       ? upcomingEvents
       : upcomingEvents.filter((event) => event.eventType === eventType);
-      console.log(filteredEvents)
 
   return (
     <div>

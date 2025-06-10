@@ -2,7 +2,6 @@ import React, { use } from "react";
 import Navbar from "../Components/Navbar/Navbar";
 import { Outlet } from "react-router";
 import { AuthContext } from "../contexts/AuthProvider";
-import { div } from "motion/react-client";
 import Footer from "../Components/Footer/Footer";
 
 const Root = () => {

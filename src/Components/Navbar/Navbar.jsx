@@ -9,39 +9,27 @@ import { MdCancel } from "react-icons/md";
 import { useDarkMode } from "../../contexts/ThemeContext";
 import { MdDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
-import { delay, stagger } from "motion";
-import { duration } from "@mui/material/styles";
-const motionAnimation = {
-  hidden: {
-    opacity: 0,
-    y: -12,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      delay: 0.1,
-      staggerChildren: 0.2,
-    },
-  },
-};
 
-const childAnimation = {
-  hidden: {
-    opacity: 0,
-    y: -10,
-  },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
-};
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const Navbar = () => {
   const word = "Jovent";
+  useGSAP(() => {
+    const tl = gsap.timeline();
+    tl.from(".nav", {
+      opacity: 0,
+      y: -10,
+      duration: 0.4,
+      stagger: 0.2,
+    });
+    tl.from(".end", {
+      opacity: 0,
+      y: -10,
+      duration: 0.4,
+      stagger: 0.1,
+    });
+  });
   const { darkMode, setDarkMode } = useDarkMode();
   const handleTheme = () => {
     setDarkMode(!darkMode);
@@ -51,37 +39,32 @@ const Navbar = () => {
   const { user, logOut } = use(AuthContext);
 
   const links = (
-    <motion.div
-      initial="hidden"
-      animate="show"
-      variants={motionAnimation}
-      className="flex flex-col md:flex-row items-center gap-6 md:gap-8"
-    >
-      <motion.div variants={childAnimation}>
-        <NavLink to="/" className="text-lg dark:text-white font-medium">
+    <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+      <div>
+        <NavLink to="/" className="text-lg nav dark:text-white font-medium">
           Home
         </NavLink>
-      </motion.div>
+      </div>
 
-      <motion.div variants={childAnimation}>
+      <div>
         <NavLink
           to="/upcomingevents"
-          className="text-lg dark:text-white font-medium"
+          className="text-lg dark:text-white nav font-medium"
         >
           Upcoming Events
         </NavLink>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 
   return (
-    <div className=" relative flex items-center py-2 px-3 md:px-0 justify-between overflow-visible z-30">
+    <div className=" relative flex items-center py-2 md:py-4 px-3 md:px-0 justify-between overflow-visible z-30">
       <div className="w-[50%] md:w-[25%] flex items-center">
         <div className="dropdown relative z-50">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4"
+              className="h-4 w-4 dark:text-white "
               fill="none"
               viewBox="0 0 20 20"
               stroke="currentColor"
@@ -103,15 +86,15 @@ const Navbar = () => {
         </div>
 
         <div className="flex ml-1 md:ml-0 items-center gap-1 md:gap-3 whitespace-nowrap overflow-hidden">
-          <motion.p>
+          <p className="icon">
             <FaHandshakeAngle className="text-main text-xl md:text-3xl" />
-          </motion.p>
+          </p>
           <h1 className="flex flex-wrap items-center gap-[1px] text-nowrap">
             {letters.map((letter, index) => (
               <motion.span
-                initial={{ filter: "blur(6px)", opacity: 0, y: 12 }}
+                initial={{ filter: "blur(6px)", opacity: 0, y: -12 }}
                 animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                transition={{ duration: 0.25, delay: 0.2 * index }}
+                transition={{ duration: 0.2, delay: 0.15 * index }}
                 className="text-lg dark:text-white font-semibold text-nowrap md:text-2xl"
                 key={index}
               >
@@ -124,13 +107,11 @@ const Navbar = () => {
       <div className="hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <motion.div
-        initial={{ filter: "blur(4px)", opacity: 0, y: 12 }}
-        animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="flex items-center gap-2 md:gap-4 relative z-50"
+      <div
+        className="flex items-center gap-2 md:gap-3 relative z-50"
       >
-        {user && (
+        <div className="end">
+          {user && (
           <Tooltip title={user.displayName} placement="top">
             <Button
               variant="text"
@@ -148,8 +129,10 @@ const Navbar = () => {
             </Button>
           </Tooltip>
         )}
+        </div>
 
-        <AnimatePresence>
+       <div className="end">
+         <AnimatePresence>
           {open && (
             <motion.div
               initial={{ filter: "blur(6px)", opacity: 0, y: 20 }}
@@ -178,7 +161,7 @@ const Navbar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/manage"
+                    to={`/manage/${user?.email}`}
                     className="block px-4 py-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-800 dark:text-white"
                   >
                     Manage Events
@@ -196,8 +179,10 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
+       </div>
 
-        {user ? (
+        <div className="end">
+          {user ? (
           <button
             onClick={() => logOut()}
             className=" bg-main text-white px-4 py-2 rounded-full md:px-8 md:py-3"
@@ -212,14 +197,15 @@ const Navbar = () => {
             Login
           </Link>
         )}
-        <button onClick={handleTheme}>
+        </div>
+        <button className="end" onClick={handleTheme}>
           {darkMode ? (
             <CiLight className="text-2xl text-white md:text-4xl" />
           ) : (
             <MdDarkMode className="text-2xl text-black md:text-4xl" />
           )}
         </button>
-      </motion.div>
+      </div>
     </div>
   );
 };

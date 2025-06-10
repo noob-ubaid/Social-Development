@@ -34,8 +34,9 @@ export const router = createBrowserRouter([
         element : <PrivateRoute><CreateEvent></CreateEvent></PrivateRoute>
       },
       {
-        path : '/manage',
-        element : <PrivateRoute><ManageEvents></ManageEvents></PrivateRoute>
+        path : '/manage/:email',
+        element : <PrivateRoute><ManageEvents></ManageEvents></PrivateRoute>,
+        loader : ({params})=> fetch(`${import.meta.env.VITE_api_url}/manage-events/${params.email}`)
       },
       {
         path : '/joined',
