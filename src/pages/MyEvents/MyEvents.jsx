@@ -1,7 +1,32 @@
 import React from "react";
 import { Link } from "react-router";
-
-const MyEvents = ({ card }) => {
+import Swal from "sweetalert2";
+const MyEvents = ({ card , events , setEvents }) => {
+     const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`${import.meta.env.VITE_api_url}/events/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount) {
+              Swal.fire("Deleted!", "Your recipe has been deleted.", "success");
+              const remainingRecipe = events.filter((r) => r._id !== id);
+              setEvents(remainingRecipe);
+            }
+          });
+      }
+    });
+  };
   return (
     <div className="border flex flex-col md:flex-row gap-6 md:gap-8 border-[#0F0F0F26] dark:border-gray-700 p-4 md:p-6 rounded-md">
       <div className="md:w-[40%]">
@@ -32,7 +57,7 @@ const MyEvents = ({ card }) => {
           <Link to={`/updateevent/${card._id}`} className="rounded-md text-center md:px-6 w-full md:py-3 px-4 py-2 text-[#09982F] bg-[#09982F1A] ">
             Update
           </Link>
-          <button className="rounded-md md:px-6 w-full md:py-3 px-4 py-2 text-[#FF0000] bg-[#FF000020] ">
+          <button onClick={()=> handleDelete(card._id)} className="rounded-md md:px-6 w-full md:py-3 px-4 py-2 text-[#FF0000] bg-[#FF000020] ">
             Delete
           </button>
         </div>

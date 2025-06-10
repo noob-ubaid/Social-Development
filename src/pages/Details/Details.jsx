@@ -16,10 +16,10 @@ const Details = () => {
         <div className=" w-full md:w-[60%]">
           <h3 className=" text-2xl dark:text-white font-semibold">Name : {data.name}</h3>
           <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-            Location : {data.location}
+            <i class="fa-solid fa-location-dot text-main mr-2"></i>Location : {data.location}
           </p>
           <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
-            Date : {data.date}
+           <i class="fa-solid fa-calendar-days text-main mr-2"></i> Date : {data.date}
           </p>
           <p className="text-[#0F0F0F99] dark:text-white font-medium mt-2">
             Event Type : {data.eventType}
