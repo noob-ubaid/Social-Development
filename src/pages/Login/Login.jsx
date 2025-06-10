@@ -15,7 +15,7 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         toast.success("Successfully logged in");
-        // navigate(`${location.state ? location.state : "/"}`);
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         const errorCode = error.code;

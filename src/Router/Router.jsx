@@ -9,6 +9,7 @@ import CreateEvent from "../pages/Create/CreateEvent";
 import ManageEvents from "../pages/Manage/ManageEvents";
 import JoinedEvents from "../pages/Joined/JoinedEvents";
 import Details from "../pages/Details/Details";
+import UpdateEvent from "../pages/UpdateEvents/UpdateEvent";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,11 @@ export const router = createBrowserRouter([
         path : '/manage/:email',
         element : <PrivateRoute><ManageEvents></ManageEvents></PrivateRoute>,
         loader : ({params})=> fetch(`${import.meta.env.VITE_api_url}/manage-events/${params.email}`)
+      },
+      {
+        path : '/updateevent/:id',
+        element : <PrivateRoute><UpdateEvent></UpdateEvent></PrivateRoute>,
+        loader : ({params})=> fetch(`${import.meta.env.VITE_api_url}/events/${params.id}`)
       },
       {
         path : '/joined',

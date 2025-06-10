@@ -3,7 +3,6 @@ import { useLoaderData } from "react-router";
 
 const Details = () => {
   const data = useLoaderData();
-  console.log(data);
   return (
     <div className="max-w-[1600px] mx-auto">
       <div className="border flex justify-between mt-6 md:mt-12 dark:border-gray-700 items-start gap-8 flex-col md:flex-row border-[#0F0F0F26] p-6 md:p-8 rounded-md">
@@ -31,7 +30,7 @@ const Details = () => {
 
           <div>
             <button
-              className={`block w-full ${"cursor-not-allowed"} mt-6 text-center bg-[#AD49E1] text-white py-3 rounded-lg font-semibold hover:bg-[#9b3cd3] transition`}
+              className={`block w-full mt-6 text-center bg-[#AD49E1] text-white py-3 rounded-lg font-semibold hover:bg-[#9b3cd3] transition`}
             >Join Event</button>
           </div>
         </div>
