@@ -23,7 +23,6 @@ export const router = createBrowserRouter([
       {
         path : '/upcomingevents',
         Component : UpcomingEvents,
-        loader : () => fetch(`${import.meta.env.VITE_api_url}/events`)
       },
       {
         path : '/details/:id',

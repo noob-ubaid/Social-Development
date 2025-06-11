@@ -1,19 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useLoaderData } from "react-router";
+import React, { useEffect, useState } from "react";
 import Event from "../event/Event";
 import Filter from "../Filter/Filter";
 
 const UpcomingEvents = () => {
-  const data = useLoaderData();
+  const [data, setData] = useState([]);
   const [eventType, setEventType] = useState("All");
-
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    fetch(`${import.meta.env.VITE_api_url}/events?searchParams=${search}`)
+      .then((res) => res.json())
+      .then((data) => setData(data));
+  }, [search]);
   const handleEventType = (e) => {
     setEventType(e.target.value);
   };
 
   const todayDate = new Date();
   todayDate.setHours(0, 0, 0, 0);
-
   const upcomingEvents = data.filter((event) => {
     const eventDate = new Date(event.date);
     eventDate.setHours(0, 0, 0, 0);
@@ -47,6 +50,7 @@ const UpcomingEvents = () => {
           type="text"
           name="search"
           placeholder="Search"
+          onChange={(e) => setSearch(e.target.value)}
           required
         />
       </div>

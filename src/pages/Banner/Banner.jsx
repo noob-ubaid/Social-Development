@@ -25,7 +25,7 @@ const Banner = () => {
     });
   });
   return (
-    <div className="flex items-center mt-80 gap-8 mb-6 md:mt-16 md:gap-16 justify-between flex-col-reverse md:flex-row">
+    <div className="flex items-center mt-10 gap-8 mb-6 md:mt-16 md:gap-16 justify-between flex-col-reverse md:flex-row">
       <div>
         <h2 className="text-3xl title dark:text-white md:text-4xl text-center md:text-left md:font-bold lg:text-[45px] font-semibold">
           The Social Impact Hub -{" "}
