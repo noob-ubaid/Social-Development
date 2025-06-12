@@ -1,8 +1,19 @@
 import React from "react";
+import { motion } from "framer-motion";
 
+const cardVariants = {
+  hidden: { opacity: 0  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
 const Joinedcard = ({ event }) => {
   return (
-    <div className="border hover:shadow-md transition dark:border-gray-700 duration-300 border-[#0F0F0F26]  rounded-md">
+    <motion.div variants={cardVariants} className="border hover:shadow-md transition dark:border-gray-700 duration-300 border-[#0F0F0F26]  rounded-md">
       <div>
         <img
           className="w-full h-[280px] object-cover bg-center rounded-t-md"
@@ -29,7 +40,7 @@ const Joinedcard = ({ event }) => {
           Cancel
         </button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
