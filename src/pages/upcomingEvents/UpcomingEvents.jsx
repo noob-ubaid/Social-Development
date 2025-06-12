@@ -1,16 +1,35 @@
 import React, { useEffect, useState } from "react";
 import Event from "../event/Event";
 import Filter from "../Filter/Filter";
-
+import { motion } from "framer-motion";
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.22,
+    },
+  },
+};
 const UpcomingEvents = () => {
   const [data, setData] = useState([]);
   const [eventType, setEventType] = useState("All");
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
+    setLoading(true);
     fetch(`${import.meta.env.VITE_api_url}/events?searchParams=${search}`)
       .then((res) => res.json())
-      .then((data) => setData(data));
+      .then((data) => {
+        setData(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, [search]);
+
   const handleEventType = (e) => {
     setEventType(e.target.value);
   };
@@ -55,20 +74,28 @@ const UpcomingEvents = () => {
         />
       </div>
 
-      <div>
-        {filteredEvents.length < 1 ? (
-          <Filter eventType={eventType} />
-        ) : (
-          <div
-            initial="hidden"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10"
-          >
-            {filteredEvents.map((event) => (
-              <Event key={event._id} event={event} />
-            ))}
-          </div>
-        )}
-      </div>
+      {loading ? (
+        <div className="flex justify-center items-center h-40 md:h-72">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
+        </div>
+      ) : (
+        <div>
+          {filteredEvents.length < 1 ? (
+            <Filter eventType={eventType} />
+          ) : (
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              variants={containerVariants}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10"
+            >
+              {filteredEvents.map((event) => (
+                <Event key={event._id} event={event} />
+              ))}
+            </motion.div>
+          )}
+        </div>
+      )}
     </div>
   );
 };

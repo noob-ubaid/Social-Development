@@ -1,7 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
-import { useLoaderData } from "react-router";
+import { useLoaderData} from "react-router";
 import { toast } from "react-toastify";
 const UpdateEvent = () => {
   const data = useLoaderData();
