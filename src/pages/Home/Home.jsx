@@ -2,14 +2,14 @@ import React from 'react';
 import Banner from '../Banner/Banner';
 import NewsLetter from '../../Components/Newsletter/NewsLetter';
 import FeatureSection from '../Feature/FeatureSection';
-// import Gallery from '../Gallery/gallery';
+import Gallery from '../Gallery/Gallery';
 
 const Home = () => {
     return (
         <div className=''>
             <Banner/>
             <FeatureSection/>
-            {/* <Gallery/> */}
+            <Gallery/>
             <NewsLetter/>
         </div>
     );
