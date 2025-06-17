@@ -60,7 +60,7 @@ const JoinedEvents = () => {
                 <option value="asc">📅 Earliest Events First</option>
                 <option value="desc">🕒 Latest Events First</option>
               </select>
-              {/* Dropdown icon */}
+
               <div className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-blue-700">
                 ▼
               </div>

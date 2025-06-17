@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Event from "../event/Event";
 import Filter from "../Filter/Filter";
-import { motion } from "framer-motion";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const UpcomingEvents = () => {
