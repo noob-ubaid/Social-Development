@@ -37,7 +37,6 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const letters = word.split("");
   const { user, logOut } = use(AuthContext);
-
   const links = (
     <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
       <div>
@@ -52,6 +51,14 @@ const Navbar = () => {
           className="text-lg dark:text-white nav font-medium"
         >
           Upcoming Events
+        </NavLink>
+      </div>
+      <div>
+        <NavLink
+          to="/about"
+          className="text-lg dark:text-white nav font-medium"
+        >
+          About Us
         </NavLink>
       </div>
     </div>

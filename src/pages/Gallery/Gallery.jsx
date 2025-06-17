@@ -5,7 +5,7 @@ const galleryImages = [
   {
     id: 1,
     title: "Road Cleaning - Mirpur 10",
-    src: "https://plus.unsplash.com/premium_photo-1683140538884-07fb31428ca6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8ZG9uYXRpb258ZW58MHx8MHx8fDA%3D",
+    src: "https://images.unsplash.com/photo-1648662594772-786f95b9e58b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cm9hZCUyMGNsZWFuaW5nfGVufDB8fDB8fHww",
     category: "Cleanup",
   },
   {
@@ -91,12 +91,12 @@ const GallerySection = () => {
                 className="w-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105"
               />
 
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex justify-center items-center text-center p-4">
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition duration-300 flex  justify-center items-center text-center p-4">
                 <div>
                   <h3 className="text-xl md:text-2xl font-bold text-white mb-2">
                     {title}
                   </h3>
-                  <span className="text-sm md:text-base italic text-gray-200">
+                  <span className="text-sm md:text-base bg-black px-6 py-2.5 rounded-full mt-4 italic text-gray-200">
                     {category}
                   </span>
                 </div>

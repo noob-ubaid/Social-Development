@@ -1,14 +1,22 @@
-import React, { use } from "react";
-import { useLoaderData } from "react-router";
+import React, { use, useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { toast } from "react-toastify";
 const Details = () => {
-  const data = useLoaderData();
+  const [data,setData] = useState([])
+  const {id} = useParams()
   const {user} = use(AuthContext)
   const joinedData = {
     id:data._id,
     email : user?.email
   }
+  useEffect(()=>{
+    fetch(`${import.meta.env.VITE_api_url}/events/${id}`,{
+      credentials : 'include'
+    })
+    .then(res => res.json())
+    .then(data => setData(data))
+  },[id])
   const handleJoin = () => {
     fetch(`${import.meta.env.VITE_api_url}/join`,{
       method : "POST",

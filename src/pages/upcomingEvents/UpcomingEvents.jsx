@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Event from "../event/Event";
 import Filter from "../Filter/Filter";
 import { motion } from "framer-motion";
+import { AuthContext } from "../../contexts/AuthProvider";
+
 const containerVariants = {
   hidden: {},
   visible: {
@@ -10,25 +12,37 @@ const containerVariants = {
     },
   },
 };
+
 const UpcomingEvents = () => {
   const [data, setData] = useState([]);
+  const { user } = useContext(AuthContext);
   const [eventType, setEventType] = useState("All");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
-    fetch(`${import.meta.env.VITE_api_url}/events?searchParams=${search}`)
+    fetch(`${import.meta.env.VITE_api_url}/events?searchParams=${search}`, {
+     credentials : 'include'
+    })
       .then((res) => res.json())
-      .then((data) => {
-        setData(data);
+      .then((resData) => {
+        if (Array.isArray(resData)) {
+          setData(resData);
+        } else if (Array.isArray(resData.data)) {
+          setData(resData.data);
+        } else {
+          console.error("Unexpected API response:", resData);
+          setData([]);
+        }
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Fetch error:", err);
+        setData([]);
         setLoading(false);
       });
-  }, [search]);
+  }, [search, user?.accessToken]);
 
   const handleEventType = (e) => {
     setEventType(e.target.value);
@@ -36,11 +50,14 @@ const UpcomingEvents = () => {
 
   const todayDate = new Date();
   todayDate.setHours(0, 0, 0, 0);
-  const upcomingEvents = data.filter((event) => {
-    const eventDate = new Date(event.date);
-    eventDate.setHours(0, 0, 0, 0);
-    return eventDate >= todayDate;
-  });
+
+  const upcomingEvents = Array.isArray(data)
+    ? data.filter((event) => {
+        const eventDate = new Date(event.date);
+        eventDate.setHours(0, 0, 0, 0);
+        return eventDate >= todayDate;
+      })
+    : [];
 
   const filteredEvents =
     eventType === "All"
@@ -101,3 +118,4 @@ const UpcomingEvents = () => {
 };
 
 export default UpcomingEvents;
+

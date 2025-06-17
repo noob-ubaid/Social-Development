@@ -3,7 +3,8 @@ import DatePicker from "react-datepicker";
 import { useLoaderData} from "react-router";
 import { toast } from "react-toastify";
 const UpdateEvent = () => {
-  const data = useLoaderData();
+  const data = useLoaderData()
+
   const [startDate, setStartDate] = useState(new Date(data.date));
   const [eventType, setEventType] = useState(data.eventType);
   const [description, setDescription] = useState(data.description);
@@ -23,6 +24,7 @@ const UpdateEvent = () => {
     const updatedData = { name, image, location, date, description, eventType };
     fetch(`${import.meta.env.VITE_api_url}/events/${data._id}`, {
       method: "PUT",
+      credentials : 'include',
       headers: {
         "content-type": "application/json",
       },
@@ -33,6 +35,7 @@ const UpdateEvent = () => {
         toast.success("Successfully added your event");
       });
   };
+ 
   return (
     <div className="my-6 md:my-10">
       <h2 className="text-2xl text-center md:text-3xl font-semibold">
@@ -104,7 +107,12 @@ const UpdateEvent = () => {
         </div>
       </form>
     </div>
+   
   );
 };
 
 export default UpdateEvent;
+
+
+
+
