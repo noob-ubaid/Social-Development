@@ -10,12 +10,14 @@ import ManageEvents from "../pages/Manage/ManageEvents";
 import JoinedEvents from "../pages/Joined/JoinedEvents";
 import Details from "../pages/Details/Details";
 import UpdateEvent from "../pages/UpdateEvents/UpdateEvent";
-import About from "../Components/About/About";
+import Error from "../pages/Error/Error";
+import PastEvents from "../pages/PastEvents/PastEvents";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component : Root,
+    errorElement : <Error/>,
     children : [
       {
         index :true,
@@ -26,8 +28,8 @@ export const router = createBrowserRouter([
         Component : UpcomingEvents,
       },
       {
-        path : '/about',
-        Component : About,
+        path : '/pastEvents',
+        Component : PastEvents,
       },
       {
         path : '/details/:id',

@@ -6,8 +6,8 @@ import { AuthContext } from "../../contexts/AuthProvider";
 const ManageEvents = () => {
   const { user } = use(AuthContext);
   const [events, setEvents] = useState([]);
+  console.log(events)
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     if (!user) return;
     setLoading(true);
@@ -52,3 +52,9 @@ const ManageEvents = () => {
 };
 
 export default ManageEvents;
+
+
+
+
+
+

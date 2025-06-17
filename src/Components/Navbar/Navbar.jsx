@@ -55,10 +55,10 @@ const Navbar = () => {
       </div>
       <div>
         <NavLink
-          to="/about"
+          to="/pastEvents"
           className="text-lg dark:text-white nav font-medium"
         >
-          About Us
+          Past Events
         </NavLink>
       </div>
     </div>

@@ -17,8 +17,8 @@ const JoinedEvents = () => {
   const { user } = useContext(AuthContext);
   const [isJoined, setIsJoined] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [sortOrder, setSortOrder] = useState("asc"); // asc or desc
-
+  const [sortOrder, setSortOrder] = useState("asc"); 
+  console.log(isJoined)
   useEffect(() => {
     if (user?.email) {
       setLoading(true);
@@ -43,7 +43,7 @@ const JoinedEvents = () => {
   return (
     <>
       {loading ? (
-        <div className="flex justify-center items-center h-40 md:h-72">
+        <div className="flex justify-center items-center h-40 md:h-[450px]">
           <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
         </div>
       ) : isJoined.length < 1 ? (
@@ -80,6 +80,7 @@ const JoinedEvents = () => {
         </>
       )}
     </>
+ 
   );
 };
 

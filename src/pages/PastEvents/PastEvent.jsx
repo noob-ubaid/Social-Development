@@ -1,8 +1,20 @@
 import { Link } from "react-router";
+import { motion } from "framer-motion";
 
-const Event = (event) => {
+const cardVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+    },
+  },
+};
+const PastEvent = (event) => {
   return (
-    <div
+    <motion.div
+      variants={cardVariants}
       className="border hover:shadow-md transition dark:border-gray-700 duration-300 border-[#0F0F0F26]  rounded-md"
     >
       <div>
@@ -27,17 +39,9 @@ const Event = (event) => {
           <i class="fa-solid fa-location-dot text-main mr-2"></i> Location :{" "}
           {event.event.location}
         </p>
-        <div className="mt-4 w-full ">
-          <Link
-            to={`/details/${event.event._id}`}
-            className="block w-full text-center bg-[#AD49E1] text-white py-3 rounded-full font-semibold hover:bg-[#9b3cd3] transition"
-          >
-            See Details
-          </Link>
-        </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-export default Event;
+export default PastEvent;

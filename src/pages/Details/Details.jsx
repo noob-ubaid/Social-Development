@@ -4,19 +4,14 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { toast } from "react-toastify";
 const Details = () => {
   const [data,setData] = useState([])
+  const [loading,setLoading] = useState(true)
   const {id} = useParams()
   const {user} = use(AuthContext)
   const joinedData = {
     id:data._id,
     email : user?.email
   }
-  useEffect(()=>{
-    fetch(`${import.meta.env.VITE_api_url}/events/${id}`,{
-      credentials : 'include'
-    })
-    .then(res => res.json())
-    .then(data => setData(data))
-  },[id])
+  
   const handleJoin = () => {
     fetch(`${import.meta.env.VITE_api_url}/join`,{
       method : "POST",
@@ -27,8 +22,26 @@ const Details = () => {
     })
     .then(res => res.json())
     .then(data => {
-      toast.success("You’re already part of this event.");
+      toast.success("You have joined this event.");
     })
+  }
+  useEffect(()=>{
+    setLoading(true)
+    fetch(`${import.meta.env.VITE_api_url}/events/${id}`,{
+      credentials : 'include'
+    })
+    .then(res => res.json())
+    .then(data => {
+      setData(data)
+      setLoading(false)
+    })
+  },[id])
+    if (loading) {
+    return (
+      <div className="flex justify-center items-center h-40 md:h-[500px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-b-4 border-blue-500"></div>
+      </div>
+    );
   }
   return (
     <div className="max-w-[1600px] mx-auto">

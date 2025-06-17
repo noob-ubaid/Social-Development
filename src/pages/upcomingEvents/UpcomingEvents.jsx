@@ -4,15 +4,6 @@ import Filter from "../Filter/Filter";
 import { motion } from "framer-motion";
 import { AuthContext } from "../../contexts/AuthProvider";
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.22,
-    },
-  },
-};
-
 const UpcomingEvents = () => {
   const [data, setData] = useState([]);
   const { user } = useContext(AuthContext);
@@ -100,16 +91,13 @@ const UpcomingEvents = () => {
           {filteredEvents.length < 1 ? (
             <Filter eventType={eventType} />
           ) : (
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              variants={containerVariants}
+            <div
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-10"
             >
               {filteredEvents.map((event) => (
                 <Event key={event._id} event={event} />
               ))}
-            </motion.div>
+            </div>
           )}
         </div>
       )}

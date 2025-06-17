@@ -17,11 +17,12 @@ const Register = () => {
     register(email, password)
       .then((result) => {
         const user = result.user;
+        navigate("/");
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             toast.success("Successfully logged in");
+
             setUser({ ...user, displayName: name, photoURL: photo });
-            navigate(`${location.state ? location.state : "/"}`);
           })
           .then((error) => {
             setUser(user);
@@ -49,7 +50,7 @@ const Register = () => {
           <h2 className="text-2xl font-semibold mt-4 mb-2 border-b border-b-[#0F0F0F26] pb-4 text-center">
             Register Your Account
           </h2>
-          
+
           <div>
             <button
               onClick={handleGoogle}
