@@ -12,6 +12,8 @@ import Details from "../pages/Details/Details";
 import UpdateEvent from "../pages/UpdateEvents/UpdateEvent";
 import Error from "../pages/Error/Error";
 import PastEvents from "../pages/PastEvents/PastEvents";
+import About from "../Components/About/About";
+import Contact from "../Components/Contact/Contact";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
       {
         path : '/pastEvents',
         Component : PastEvents,
+      },
+      {
+        path : '/about',
+        Component : About,
+      },
+      {
+        path : '/contact',
+        Component : Contact,
       },
       {
         path : '/details/:id',

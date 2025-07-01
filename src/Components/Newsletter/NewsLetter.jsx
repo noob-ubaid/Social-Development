@@ -24,7 +24,7 @@ const itemVariants = {
 
 const NewsLetter = () => {
   return (
-    <section className="py-16 px-6 md:px-12 lg:px-32 dark:from-gray-900 dark:to-gray-800 transition-all duration-500 rounded-xl my-16">
+    <section className="py-16 px-6 md:px-12 lg:px-32 dark:from-gray-900 dark:to-gray-800 transition-all duration-500 rounded-xl my-8 md:my-10">
       <motion.div
         className="text-center"
         variants={containerVariants}

@@ -34,11 +34,7 @@ const Joinedcard = ({ event }) => {
           <i class="fa-solid fa-location-dot text-main mr-2"></i> Location :{" "}
           {event.location}
         </p>
-        <button
-          className={`block w-full mt-6 text-center bg-[#AD49E1] text-white py-3 rounded-full font-semibold hover:bg-[#9b3cd3] transition`}
-        >
-          Cancel
-        </button>
+  
       </div>
     </motion.div>
   );

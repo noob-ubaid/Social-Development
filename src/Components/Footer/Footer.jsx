@@ -1,173 +1,83 @@
 import React from "react";
-
+import { FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
+import { FaHandshakeAngle } from "react-icons/fa6";
+import { Link } from "react-router";
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white dark:border-t border-gray-600 pt-16 pb-8">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
-          <div>
-            <h3 className="text-3xl font-bold mb-4 text-main">Jobent</h3>
-            <p className="text-gray-400 mb-4">
-              Connecting volunteers with meaningful opportunities to create
-              positive change in communities.
-            </p>
-            <div className="flex space-x-4">
-              <a
-                href="https://www.facebook.com/share/1AGgdG4F9h/"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                <i className="fab fa-facebook-f text-lg"></i>
-              </a>
-              <a
-                href="https://x.com/UbaidurRah24983?t=mA11h7v1LN7rB2ffFymKAg&s=08"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                <i className="fab fa-twitter text-lg"></i>
-              </a>
-              <a
-                href="https://github.com/noob-ubaid"
-                className="text-gray-400 hover:text-white transition-colors duration-200"
-              >
-                <i className="fab fa-github text-lg"></i>
-              </a>
-            </div>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Upcoming Events
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Create Event
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-4">Event Types</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Cleanup
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Plantation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Donation
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Education
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-300 cursor-pointer"
-                >
-                  Other
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
-            <ul className="space-y-2">
-              <li className="flex items-start">
-                <i className="fas fa-map-marker-alt mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">
-                  123 jobent St, Dhaka, Bangladesh
-                </span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-envelope mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">info@jobent.org</span>
-              </li>
-              <li className="flex items-start">
-                <i className="fas fa-phone-alt mt-1 mr-3 text-gray-400"></i>
-                <span className="text-gray-400">+880 1234 567890</span>
-              </li>
-            </ul>
-          </div>
+    <footer className="bg-gray-100 dark:bg-gray-900 dark:border-gray-600 dark:border-t rounded-md py-16">
+      <div className="max-w-3xl mx-auto px-4 text-center ">
+        {/* Logo */}
+        <div className="flex items-center flex-col justify-center">
+          <p className="icon flex items-center gap-2">
+            <FaHandshakeAngle className="text-main text-xl md:text-3xl" />
+            <span className="text-lg dark:text-white font-semibold text-nowrap md:text-2xl">
+              Jovent
+            </span>
+          </p>
+          <p className="text-gray-400 border-b border-gray-400 dark:border-gray-600 pb-4 mt-4 mb-6">
+            Create, join, and track local social service events with Jovent
+            Events, connecting communities through impactful activities like
+            cleanups and tree plantations.
+          </p>
         </div>
-        <div className="border-t border-gray-800 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2025 Jobent. All rights reserved.
-            </p>
-            <div className="flex space-x-6">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Terms of Service
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-white text-sm transition-colors duration-300 cursor-pointer"
-              >
-                Cookie Policy
-              </a>
-            </div>
-          </div>
+
+        {/* Links */}
+        <div className="flex flex-wrap justify-center gap-7 pb-6 border-b border-gray-400 dark:border-gray-600 mb-6">
+          <Link
+            className="font-medium  text-gray-700 dark:text-gray-300 hover:text-[#AD49E1] duration-200 text-sm sm:text-base"
+            to="/"
+          >
+            Home
+          </Link>
+          <Link
+            className="font-medium  text-gray-700 dark:text-gray-300 hover:text-[#AD49E1] duration-200 text-sm sm:text-base"
+            to="/upcomingevents"
+          >
+            Upcoming Events
+          </Link>
+          <Link
+            className="font-medium  text-gray-700 dark:text-gray-300 hover:text-[#AD49E1] duration-200 text-sm sm:text-base"
+            to="/pastEvents"
+          >
+            Past Events
+          </Link>
+          <Link
+            className="font-medium  text-gray-700 dark:text-gray-300 hover:text-[#AD49E1] duration-200 text-sm sm:text-base"
+            to="/about"
+          >
+            About Us
+          </Link>
+          <Link
+            className="font-medium  text-gray-700 dark:text-gray-300 hover:text-[#AD49E1] duration-200 text-sm sm:text-base"
+            to="/contact"
+          >
+            Contact Us
+          </Link>
+        </div>
+
+        {/* Social links */}
+        <div className="flex justify-center gap-4">
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/ubaidur-rahman01/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-[#AD49E1] duration-300" />
+          </a>
+          <a
+            target="_blank"
+            href="https://x.com/UbaidurRah24983?t=dXrrCouR6TD9CaqpfD2DGQ&s=08"
+            aria-label="Twitter"
+          >
+            <FaTwitter className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-[#AD49E1] duration-300" />
+          </a>
+          <a
+            target="_blank"
+            href="https://www.facebook.com/ubaidur.rahman.881781?rdid=Jod9W9noAyDDBpMT&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1FXDbMmv5i%2F#"
+            aria-label="Facebook"
+          >
+            <FaFacebook className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-[#AD49E1] duration-300" />
+          </a>
         </div>
       </div>
     </footer>

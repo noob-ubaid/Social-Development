@@ -54,7 +54,7 @@ const PastEvents = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-center mb-8 text-gray-800 dark:text-white">
+      <h2 className="text-2xl font-bold  text-center my-8 text-gray-800 dark:text-white">
         ⏳ Past Events
       </h2>
 

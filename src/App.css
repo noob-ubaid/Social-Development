@@ -9,5 +9,8 @@
 .active{
     font-weight: 600;
     color: #AD49E1;
-    border-bottom: 2px solid #AD49E1;
+    background-color: #ad49e130;
+    padding-inline: 16px;
+    padding-block: 8px;
+    border-radius: 8x;
 }
