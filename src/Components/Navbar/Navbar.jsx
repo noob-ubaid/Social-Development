@@ -78,8 +78,9 @@ const Navbar = () => {
   });
 
   return (
-    <div className="sticky md:top-2 top-0 bg-main/10 backdrop-blur-2xl rounded-none md:rounded-md z-50 flex items-center py-4 px-3 md:px-4 justify-between overflow-visible">
-      <div className="flex items-center">
+    <div className="sticky top-0 bg-main/10  backdrop-blur-2xl rounded-none md:rounded-md z-50  py-4 px-3 md:px-4  overflow-visible">
+      <div className="max-w-[1600px] mx-auto flex items-center justify-between">
+        <div className="flex items-center ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -190,6 +191,7 @@ const Navbar = () => {
             <MdDarkMode className="text-2xl text-black md:text-4xl" />
           )}
         </button>
+      </div>
       </div>
     </div>
   );
