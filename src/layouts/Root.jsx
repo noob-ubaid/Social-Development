@@ -15,7 +15,7 @@ const Root = () => {
   }
   return (
     <div className="bg-white dark:bg-gray-900">
-        <Navbar />
+      <Navbar />
       <div className="max-w-[1600px] mx-auto font-roboto">
         <div className="px-4 md:px-0">
           <Outlet></Outlet>

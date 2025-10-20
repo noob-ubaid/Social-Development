@@ -78,6 +78,7 @@ const Navbar = () => {
   });
 
   return (
+<<<<<<< HEAD
     <div className="sticky top-0 bg-main/10  backdrop-blur-2xl rounded-none md:rounded-md z-50  py-4 px-3 md:px-4  overflow-visible">
       <div className="max-w-[1600px] mx-auto flex items-center justify-between">
         <div className="flex items-center ">
@@ -107,90 +108,122 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 className="text-lg text-center nav px-4 py-2 rounded-md dark:text-white font-medium"
+=======
+    <div className="sticky top-0  bg-main/10 backdrop-blur-2xl rounded-none md:rounded-md z-50  py-4 px-3 md:px-4 overflow-visible">
+      <div className="flex items-center justify-between max-w-[1600px] mx-auto">
+        <div className="flex items-center">
+          <div className="dropdown">
+            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 dark:text-white"
+                fill="none"
+                viewBox="0 0 20 20"
+                stroke="currentColor"
+>>>>>>> ubaidur-rahman
               >
-                {link.name}
-              </NavLink>
-            ))}
-            {events}
-          </ul>
-        </div>
-
-        <div className="flex ml-1 md:ml-0 items-center gap-1 md:gap-3 whitespace-nowrap overflow-hidden">
-          <FaHandshakeAngle className="text-main text-xl md:text-3xl" />
-          <h1 className="flex flex-wrap items-center gap-[1px] text-nowrap">
-            {word.map((letter, idx) => (
-              <motion.span
-                key={idx}
-                initial={{ filter: "blur(6px)", opacity: 0, y: -12 }}
-                animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                transition={{ duration: 0.2, delay: 0.15 * idx }}
-                className="text-lg dark:text-white font-semibold text-nowrap md:text-2xl"
-              >
-                {letter}
-              </motion.span>
-            ))}
-          </h1>
-        </div>
-      </div>
-
-      <div className="hidden lg:flex flex-col lg:flex-row items-center gap-4 lg:gap-0">
-        {navLinks.map((link) => (
-          <NavLink
-            key={link.name}
-            to={link.path}
-            className="text-lg nav px-4 py-2 rounded-md dark:text-white font-medium"
-          >
-            {link.name}
-          </NavLink>
-        ))}
-        {events}
-      </div>
-
-      <div className="flex items-center gap-1">
-        <div className="end">
-          {user && (
-            <Tooltip title={user.displayName} placement="top" arrow>
-              <Button
-                variant="text"
-                disableRipple
-                disableElevation
-                className="min-w-0 p-0 rounded-full"
-              >
-                <img
-                  src={user?.photoURL}
-                  alt="User"
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full"
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
                 />
-              </Button>
-            </Tooltip>
-          )}
+              </svg>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dark:bg-gray-800 dropdown-content bg-base-100 rounded-box z-50 mt-3 w-52 p-2 shadow"
+            >
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  className="text-lg text-center nav px-4 py-2 rounded-md dark:text-white font-medium"
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+              {events}
+            </ul>
+          </div>
+
+          <div className="flex ml-1 md:ml-0 items-center gap-1 md:gap-3 whitespace-nowrap overflow-hidden">
+            <FaHandshakeAngle className="text-main text-xl md:text-3xl" />
+            <h1 className="flex flex-wrap items-center gap-[1px] text-nowrap">
+              {word.map((letter, idx) => (
+                <motion.span
+                  key={idx}
+                  initial={{ filter: "blur(6px)", opacity: 0, y: -12 }}
+                  animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, delay: 0.15 * idx }}
+                  className="text-lg dark:text-white font-semibold text-nowrap md:text-2xl"
+                >
+                  {letter}
+                </motion.span>
+              ))}
+            </h1>
+          </div>
         </div>
 
-        <div className="end">
-          {user ? (
-            <button
-              onClick={logOut}
-              className="bg-main text-white px-4 py-2 rounded-full md:px-8 md:py-3"
+        <div className="hidden lg:flex flex-col lg:flex-row items-center gap-4 lg:gap-0">
+          {navLinks.map((link) => (
+            <NavLink
+              key={link.name}
+              to={link.path}
+              className="text-lg nav px-4 py-2 rounded-md dark:text-white font-medium"
             >
-              Logout
-            </button>
-          ) : (
-            <Link
-              to="/login"
-              className="bg-main text-white px-4 py-2 rounded-full md:px-8 md:py-3"
-            >
-              Login
-            </Link>
-          )}
+              {link.name}
+            </NavLink>
+          ))}
+          {events}
         </div>
 
-        <button className="end" onClick={() => setDarkMode(!darkMode)}>
-          {darkMode ? (
-            <CiLight className="text-2xl text-white md:text-4xl" />
-          ) : (
-            <MdDarkMode className="text-2xl text-black md:text-4xl" />
-          )}
-        </button>
+        <div className="flex items-center gap-1">
+          <div className="end">
+            {user && (
+              <Tooltip title={user.displayName} placement="top" arrow>
+                <Button
+                  variant="text"
+                  disableRipple
+                  disableElevation
+                  className="min-w-0 p-0 rounded-full"
+                >
+                  <img
+                    src={user?.photoURL}
+                    alt="User"
+                    className="w-10 h-10 md:w-12 md:h-12 rounded-full"
+                  />
+                </Button>
+              </Tooltip>
+            )}
+          </div>
+
+          <div className="end">
+            {user ? (
+              <button
+                onClick={logOut}
+                className="bg-main text-white px-4 py-2 rounded-full md:px-8 md:py-3"
+              >
+                Logout
+              </button>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-main text-white px-4 py-2 rounded-full md:px-8 md:py-3"
+              >
+                Login
+              </Link>
+            )}
+          </div>
+
+          <button className="end" onClick={() => setDarkMode(!darkMode)}>
+            {darkMode ? (
+              <CiLight className="text-2xl text-white md:text-4xl" />
+            ) : (
+              <MdDarkMode className="text-2xl text-black md:text-4xl" />
+            )}
+          </button>
+        </div>
       </div>
       </div>
     </div>
