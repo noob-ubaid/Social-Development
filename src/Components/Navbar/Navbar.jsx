@@ -31,6 +31,7 @@ const Navbar = () => {
     { name: "Create Event", path: "/create" },
     { name: "Manage Events", path: `/manage/${user?.email}` },
     { name: "Joined Events", path: "/joined" },
+    { name: "Saved Events", path: "/saved" },
   ];
 
   const events = (

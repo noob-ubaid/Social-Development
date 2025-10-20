@@ -31,7 +31,7 @@ const MyEvents = ({ card , events , setEvents }) => {
     <div className="border flex flex-col md:flex-row gap-6 md:gap-8 border-[#0F0F0F26] dark:border-gray-700 p-4 md:p-6 rounded-md">
       <div className="md:w-[40%]">
         <img
-          className="w-full h-[280px] md:h-[500px] object-cover bg-center rounded-md"
+          className="w-full h-[280px] md:h-[350px] object-cover bg-center rounded-md"
           src={card.image}
           alt=""
         />

@@ -14,6 +14,7 @@ import Error from "../pages/Error/Error";
 import PastEvents from "../pages/PastEvents/PastEvents";
 import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
+import SavedEvents from "../pages/savedEvents/SavedEvents";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
       {
         path : '/create',
         element : <PrivateRoute><CreateEvent></CreateEvent></PrivateRoute>
+      },
+      {
+        path : '/saved',
+        element : <PrivateRoute><SavedEvents></SavedEvents></PrivateRoute>
       },
       {
         path : '/manage/:email',
