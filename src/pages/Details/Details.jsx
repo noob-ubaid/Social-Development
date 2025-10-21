@@ -29,7 +29,7 @@ const Details = () => {
       description:data.description,
       eventType:data.eventType,
       date:data.date,
-      email:data?.email,
+      email:user?.email,
       name:data?.displayName,
     }
     fetch(`${import.meta.env.VITE_api_url}/bookmark`, {
