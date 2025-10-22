@@ -15,6 +15,7 @@ import PastEvents from "../pages/PastEvents/PastEvents";
 import About from "../Components/About/About";
 import Contact from "../Components/Contact/Contact";
 import SavedEvents from "../pages/savedEvents/SavedEvents";
+import Comments from "../pages/Comments/Comments";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ export const router = createBrowserRouter([
       {
         path : '/details/:id',
         element : <PrivateRoute><Details></Details></PrivateRoute>
+      },
+      {
+        path : '/comments/:id',
+        element : <PrivateRoute><Comments></Comments></PrivateRoute>
       },
       {
         path : '/create',
